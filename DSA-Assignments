@@ -1,1 +1,130 @@
+DSA-Assignments
+===============
+Assignment-1
+------------
+1) public int[] twoSum(int[] nums, int target) {
+        Map < Integer, Integer > seen = new HashMap < > ();
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (seen.containsKey(complement)) {
+                return new int[] {
+                    seen.get(complement), i
+                };
+            }
+            seen.put(nums[i], i);
+        }
+        return null; 
+    }
 
+2)    public int removeElement(int[] nums, int val) {
+     int i=0;
+        int j=0;
+        while(j < nums.length)
+        {
+            if(nums[j] != val)
+            {
+                nums[i] = nums[j];
+                i++;
+            }
+            j++;
+        }
+        return i;
+    }
+3)    public int searchInsert(int[] nums, int target) {
+        int l=0;
+        int r=nums.length-1;
+        while(l<=r)
+        {
+            int mid=l+(r-1)/2;
+            if(nums[mid]==target) return mid;
+           else if(nums[mid]>target){
+               r=mid-1;
+           }else l=mid+1;
+        }
+        return l;
+    }
+4)    public int[] plusOne(int[] digits) {
+for (int i = digits.length - 1; i >= 0; i--) {
+	if (digits[i] < 9) {
+		digits[i]++;
+		return digits;
+	}
+	digits[i] = 0;
+}
+
+digits = new int[digits.length + 1];
+digits[0] = 1;
+return digits;
+
+        
+    }
+5) public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int[] nums1Copy = new int[m];
+        for (int i = 0; i < m; i++) {
+            nums1Copy[i] = nums1[i];
+        }
+         int p1 = 0;
+        int p2 = 0;
+       for (int p = 0; p < m + n; p++) {
+           
+            if (p2 >= n || (p1 < m && nums1Copy[p1] < nums2[p2])) {
+                nums1[p] = nums1Copy[p1++];
+            } else {
+                nums1[p] = nums2[p2++];
+            }
+        }
+        
+    }
+6)public boolean containsDuplicate(int[] nums) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i])) {
+                return true;
+            }
+            map.put(nums[i],1);
+        }
+        return false;
+        
+    }
+7)  public void moveZeroes(int[] nums) {
+        int n=nums.length;
+        int count=0;
+        for(int i=0;i<n;i++){
+            if(nums[i]!=0){
+                swap(i,count,nums);
+                count++;
+            }
+        }
+
+        
+    }
+    public void swap(int i,int j,int[] nums){
+        int temp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
+    }
+8)  public int[] findErrorNums(int[] nums) {
+        int[] res=new int[2];
+
+        HashSet<Integer> set= new HashSet<>();
+        int sum=0;
+        for(int num: nums){
+            if(set.contains(num)){
+                res[0]=num;
+            }else {
+                
+                set.add(num);
+                 sum+=num;
+            
+        }
+       
+        }
+        // we got the number which was repeated twice
+
+        int n=nums.length;
+        res[1]=(n*(n+1)/2)-(sum);
+
+
+
+return res;
+    }
