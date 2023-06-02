@@ -257,3 +257,185 @@ return res;
 
         return (diff>0) ? diff : 0;
     }
+Assignment-3
+------------
+1)  public int threeSumClosest(int[] nums, int target) {
+           Arrays.sort(nums);
+        int minDistance = Integer.MAX_VALUE;
+        int closestSum = 0;
+
+        for(int i = 0; i < nums.length - 2; i++) {
+            int start = i + 1;
+            int end = nums.length - 1;
+
+            while(start < end) {
+                int sum = nums[i] + nums[start] + nums[end];
+                int distance = Math.abs(target - sum);
+
+                if(sum == target) {
+                    return sum;
+                }  
+
+                if(distance < minDistance) {
+                    minDistance = distance;
+                    closestSum = sum;
+                }
+
+                if(sum < target) {
+                    start++;
+                } else {
+                    end--;
+                }
+            }
+        }
+        return closestSum;
+    }
+2) public List<List<Integer>> fourSum(int[] nums, int target) {
+               int n=nums.length;
+        Arrays.sort(nums);
+        List<List<Integer>> ans=new ArrayList<>();
+        if(n==0||n<3){
+            return ans;
+        }
+     
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                int low=j+1;
+                int high=n-1;
+                int sum=target-nums[i]-nums[j];
+                while(low<high){
+                    if(nums[low]+nums[high]==sum){
+                        List<Integer> temp=new ArrayList<>();
+                        temp.add(nums[i]);
+                        temp.add(nums[j]);
+                        temp.add(nums[low]);
+                        temp.add(nums[high]);
+                        ans.add(temp);
+                        while(low<high&&nums[low]==nums[low+1]){
+                            low++;
+                        }
+                        while(low<high&&nums[high]==nums[high-1]){
+                            high--;
+                        }
+                        low++;
+                        high--;
+                    }
+                    else if(nums[low]+nums[high]<sum){
+                        low++;
+                    }
+                    else{
+                        high--;
+                    }
+                }
+                while(j+1<n&&nums[j+1]==nums[j]){
+                    j++;
+                }
+            }
+            while(i+1<n&&nums[i+1]==nums[i]){
+                i++;
+            }
+        }
+        return ans;
+    }
+3)public void nextPermutation(int[] nums) {
+        int i=nums.length-2;
+        while(i>=0 && nums[i]>=nums[i+1]) i--;
+
+        if(i>=0){
+            int j=nums.length-1;
+            while(j>=0 && nums[j]<=nums[i]) j--;
+
+            swap(nums,i,j);
+        }
+        reverse(nums,i+1);
+        
+    }
+    public void swap(int[] nums,int i,int j){
+        int temp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
+    }
+    public void reverse(int[] nums,int i){
+      int start =i;
+      int end=nums.length-1;
+      while(start<end){
+          swap(nums,start,end);
+          start++;
+          end--;
+      }
+
+    }
+4> public int searchInsert(int[] nums, int target) {
+        int start = 0;
+        int end = nums.length-1;
+
+        while (start <= end) {
+            int mid = start + (end-start)/2;
+            if (nums[mid] == target) return mid;
+            else if (nums[mid] > target) end = mid-1;
+            else start = mid+1;
+        }
+
+        return start;
+    }
+5) public int[] plusOne(int[] digits) {
+for (int i = digits.length - 1; i >= 0; i--) {
+	if (digits[i] < 9) {
+		digits[i]++;
+		return digits;
+	}
+	digits[i] = 0;
+}
+
+digits = new int[digits.length + 1];
+digits[0] = 1;
+return digits;
+
+        
+    }
+6)public int singleNumber(int[] nums) {
+        int ans=0; //since XOR with 0 returns same number 
+        for(int i=0; i<nums.length; i++){
+            ans ^= nums[i];  // ans = (ans) XOR (array element at i) 
+        }
+        return ans;    
+    }
+7)  public List<String> findMissingRanges(int[] nums, int lower, int upper) {
+        List<String> res = new ArrayList<String>();
+        int next = lower;
+        for (int i = 0; i < nums.length; i++) {
+            // 1. We don't need to add [Integer.MAX_VALUE, ...] to result
+            if(lower == Integer.MAX_VALUE) return res;
+            if (nums[i] < next) {
+                continue;
+            }
+            if (nums[i] == next) {
+                next++;
+                continue;
+            }
+            res.add(getRange(next, nums[i] - 1));
+            // 2. We don't need to proceed after we have process Integer.MAX_VALUE in array
+            if(nums[i] == Integer.MAX_VALUE) return res;
+            next = nums[i] + 1;
+        }
+        
+        if (next <= upper) {
+            res.add(getRange(next, upper));
+        }
+        return res;
+    }
+    
+    public String getRange(int n1, int n2) {
+        return n1 == n2 ? String.valueOf(n1) : String.format("%d->%d" , n1, n2);
+    }
+8) public boolean canAttendMeetings(int[][] intervals) {
+    Arrays.sort(intervals, new Comparator<int[]>() {
+      public int compare(int[] i1, int[] i2) {
+        return i1[0] - i2[0];
+      }
+    });
+    for (int i = 0; i < intervals.length - 1; i++) {
+      if (intervals[i][1] > intervals[i + 1][0])
+        return false;
+    }
+    return 
