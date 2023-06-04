@@ -439,3 +439,168 @@ return digits;
         return false;
     }
     return 
+Assignment-4
+-------------
+1)  public List<Integer> arraysIntersection(int[] arr1, int[] arr2, int[] arr3) {
+        List<Integer> intersection = new ArrayList<Integer>();
+        int length1 = arr1.length, length2 = arr2.length, length3 = arr3.length;
+        int index1 = 0, index2 = 0, index3 = 0;
+        while (index1 < length1 && index2 < length2 && index3 < length3) {
+            int num1 = arr1[index1], num2 = arr2[index2], num3 = arr3[index3];
+            if (num1 == num2 && num1 == num3) {
+                intersection.add(num1);
+                index1++;
+                index2++;
+                index3++;
+            } else {
+                int increment1 = 0, increment2 = 0, increment3 = 0;
+                if (num1 < num2 || num1 < num3)
+                    increment1 = 1;
+                if (num2 < num1 || num2 < num3)
+                    increment2 = 1;
+                if (num3 < num1 || num3 < num2)
+                    increment3 = 1;
+                index1 += increment1;
+                index2 += increment2;
+                index3 += increment3;
+            }
+        }
+        return intersection;
+    }
+2) public List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
+        List<List<Integer>> ans = new ArrayList<>();
+        HashSet<Integer> set1 = new HashSet<>();
+        HashSet<Integer> set2 = new HashSet<>();
+          
+        for(int i = 0 ; i < nums1.length; i ++){
+            set1.add(nums1[i]);
+        }
+          for(int i = 0 ; i < nums2.length; i ++){
+            set2.add(nums2[i]);
+        }
+         List<Integer> list1 = new ArrayList<>();
+          for(int i = 0 ; i < nums1.length; i ++){
+            if(!set2.contains(nums1[i]) && !list1.contains(nums1[i])){
+                list1.add(nums1[i]);
+            }
+        }
+         ans.add(list1);
+          List<Integer> list2 = new ArrayList<>();
+          for(int i = 0 ; i < nums2.length; i ++){
+            if(!set1.contains(nums2[i]) && !list2.contains(nums2[i])){
+                list2.add(nums2[i]);
+            }
+        }
+        ans.add(list2);
+        return ans;
+        
+
+    }
+3)  public int[][] transpose(int[][] matrix) {
+        int row=matrix.length;
+        int col=matrix[0].length;
+        int arr[][]=new int[col][row];
+        for(int i=0;i<col;i++)
+        {
+            for(int j=0;j<row;j++)
+            {
+            arr[i][j]=matrix[j][i];
+            }
+        }
+        return arr;
+        
+    }
+4) public int arrayPairSum(int[] nums) {
+        Arrays.sort(nums);
+        int n = nums.length;
+        int sum = 0;
+        for (int i = 0; i < n; i += 2) {
+            sum += nums[i];
+        }
+        return sum;
+    }
+5)public int arrangeCoins(int n) {
+         int i = 1; // which row we are on
+		while(n > 0){ // checking to see if we have used all our coins
+			i++; // increasing our row
+			n = n-i; // adding coins to our row
+		}
+		return i-1;
+    }
+6)  public int[] sortedSquares(int[] nums) {
+        int n = nums.length;
+        int[] result = new int[n];
+        int left = 0;
+        int right = n - 1;
+        int i = n - 1;
+
+        while (left <= right) {
+            int leftSquare = nums[left] * nums[left];
+            int rightSquare = nums[right] * nums[right];
+
+            if (leftSquare > rightSquare) {
+                result[i] = leftSquare;
+                left++;
+            } else {
+                result[i] = rightSquare;
+                right--;
+            }
+
+            i--;
+        }
+
+        return result;
+    }
+7) public int maxCount(int m, int n, List<List<Integer>> ops) {
+        Map<Integer, Integer> xs = new HashMap<>();
+        Map<Integer, Integer> ys = new HashMap<>();
+
+        for (List<Integer> op : ops) {
+            for (int i = 1; i <= op.get(0); i++) {
+                xs.put(i, xs.getOrDefault(i, 0) + 1);
+            }
+            for (int j = 1; j <= op.get(1); j++) {
+                ys.put(j, ys.getOrDefault(j, 0) + 1);
+            }
+        }
+
+        int maxX = m;
+        int maxY = n;
+        int maxXval = 0;
+        int maxYval = 0;
+
+        for (Map.Entry<Integer, Integer> entry : xs.entrySet()) {
+            int k = entry.getKey();
+            int v = entry.getValue();
+            if (v >= maxXval) {
+                maxX = k;
+                maxXval = v;
+            }
+        }
+
+        for (Map.Entry<Integer, Integer> entry : ys.entrySet()) {
+            int k = entry.getKey();
+            int v = entry.getValue();
+            if (v >= maxYval) {
+                maxY = k;
+                maxYval = v;
+            }
+        }
+
+        return maxX * maxY;
+    }
+8) public int[] shuffle(int[] nums, int n) {
+        int[] ans=new int[nums.length];
+        int mid=nums.length/2;
+        int j=0;
+        for(int i=0;i<nums.length;i=i+2){
+           ans[i]=nums[j];
+           j++;
+        }
+        j=mid;
+         for(int i=1;i<nums.length;i=i+2){
+           ans[i]=nums[j];
+           j++;
+        }
+        return ans;
+    }
