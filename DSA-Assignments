@@ -777,3 +777,179 @@ Assignment-4
         }
         return res;
     }
+Assignment-6
+-------------
+1) public int[] diStringMatch(String s) {
+        int[] result = new int[s.length() + 1];
+        int end = result.length - 1, start = 0;
+        int index = 0;
+        while(index < s.length()){
+            if(s.charAt(index) == 'I'){
+                result[index] = start;   
+                start++;
+            }else{
+                result[index] = end;
+                end--;
+            }
+            index++;
+        }
+        result[result.length - 1] = start;
+        return result;
+    }
+2)public boolean searchMatrix(int[][] matrix, int target) {
+        
+     int n=matrix[0].length-1;
+     for(int i=0;i<matrix.length;i++){
+         if(target<=matrix[i][n]){
+             int s=0;
+             int e=n;
+             while(s<=e){
+                 int m=(s+e)/2;
+                 if(matrix[i][m]==target) return true;
+                 else if(matrix[i][m]<target){
+                     s=m+1;
+                 }else{
+                     e=m-1;
+                 }
+
+             }
+
+
+         }
+     }
+     return false;
+3) public boolean validMountainArray(int[] arr) {
+        int n = arr.length;
+        if (n < 3) return false; 
+        int i = 0;
+        while (i < n-1 && arr[i] < arr[i+1]) {
+            i++;
+        }
+        if (i == 0 || i == n-1) return false;
+        
+        while (i < n-1 && arr[i] > arr[i+1]) {
+            i++;
+        }
+        return i == n-1; 
+    }
+4) public int findMaxLength(int[] nums) {
+        HashMap<Integer,Integer>  hmap = new HashMap<>();
+        int maxLength = 0;
+        int sum = 0;
+        for(int i = 0 ; i < nums.length; i++) {
+            sum += (nums[i] == 0 ? -1 : nums[i]);
+            if(sum == 0)
+                maxLength = i+1;
+            else if(hmap.containsKey(sum)) {
+                maxLength = Math.max(maxLength,i - hmap.get(sum));
+            }
+            else 
+                hmap.put(sum,i);
+        }
+        return maxLength;
+    }
+5) public int minProductSum(int[] nums1, int[] nums2) {
+        int ans = 0;
+        // Sort nums1 and nums2 in ascending order.
+        Arrays.sort(nums2);
+        Arrays.sort(nums1);
+        
+        int i = 0;
+        int j = nums2.length-1;
+              
+        while(i < nums1.length && j >= 0)
+        {
+            ans += nums1[i] * nums2[j];
+            i++;
+            j--;
+        }
+        
+        return ans;
+    }
+6)   public int[] findOriginalArray(int[] changed) {
+        
+        int len = changed.length;
+        if((len&1) != 0) return new int[0];
+        
+        // Sorting the array
+        Arrays.sort(changed);
+        
+        // Store frequencies in map
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int e : changed) map.put(e,map.getOrDefault(e,0)+1);
+        
+        int[] res = new int[len/2];
+        int k = 0;
+        for(int i=0; i<len; i++){
+            int ele = changed[i];
+            
+            // if map contains 'ele'
+            if(map.containsKey(ele)){
+                
+                // if map contains 'ele*2'
+                if(map.containsKey(ele*2)){
+                    res[k++] = ele;
+                    
+                    // reduce frequency of 'ele' and 'ele*2' 
+                    map.put(ele,map.get(ele)-1);
+                    map.put(ele*2,map.get(ele*2)-1);
+                    
+                    // if freq of any key becomes <=0, remove it from map 
+                    if(map.get(ele)<=0) map.remove(ele);
+                    if(map.containsKey(ele*2) && map.get(ele*2)<=0) map.remove(ele*2);
+                }
+                else return new int[0];
+            }
+            
+        }
+        return res;
+    }
+7)  public int[][] generateMatrix(int n) {
+        int [][] a = new int[n][n];
+        int l=0,t=0,b=n-1,r=n-1,v=1;
+        while(t<=b||l<=r){
+         if(t<=b){
+             for(int i=l;i<=r;i++)
+                a[t][i]=v++;
+             t++;
+         }
+         if(l<=r){
+             for(int i=t;i<=b;i++)
+                 a[i][r]=v++;
+             r--;
+         }
+         if(t<=b){
+             for(int i=r;i>=l;i--)
+             a[b][i]=v++;
+             b--;
+         }
+         if(t<=b){
+             for(int i=b;i>=t;i--)
+             a[i][l]=v++;
+         }
+         l++;
+        }
+        return a;
+    }
+8)public int[][] multiply(int[][] mat1, int[][] mat2) {
+        int r1 = mat1.length, c1 = mat1[0].length, c2 = mat2[0].length;
+        int[][] res = new int[r1][c2];
+        Map<Integer, List<Integer>> mp = new HashMap<>();
+        for (int i = 0; i < r1; ++i) {
+            for (int j = 0; j < c1; ++j) {
+                if (mat1[i][j] != 0) {
+                    mp.computeIfAbsent(i, k -> new ArrayList<>()).add(j);
+                }
+            }
+        }
+        for (int i = 0; i < r1; ++i) {
+            for (int j = 0; j < c2; ++j) {
+                if (mp.containsKey(i)) {
+                    for (int k : mp.get(i)) {
+                        res[i][j] += mat1[i][k] * mat2[k][j];
+                    }
+                }
+            }
+        }
+        return res;
+    }
