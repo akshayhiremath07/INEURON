@@ -953,3 +953,183 @@ Assignment-6
         }
         return res;
     }
+    
+Assignment-7
+------------
+
+1) public boolean isIsomorphic(String s, String t) {
+
+        int map1[]=new int[200];
+        int map2[]=new int[200];
+
+        if(s.length()!=t.length())
+            return false;
+
+
+        for(int i=0;i<s.length();i++)
+        {
+            if(map1[s.charAt(i)]!=map2[t.charAt(i)])
+                return false;
+
+            map1[s.charAt(i)]=i+1;
+            map2[t.charAt(i)]=i+1;
+        }
+        return true;
+    }
+2)    public boolean isStrobogrammatic(String num) {
+        HashMap<Character, Character> dict = new HashMap<>();
+        dict.put('0','0');
+        dict.put('1','1');
+        dict.put('8','8');
+        dict.put('6','9');
+        dict.put('9','6');
+        int i=0; 
+        int j = num.length()-1;
+        while(i<=j){
+            char f = num.charAt(i);
+            char b = num.charAt(j);
+            if(dict.containsKey(f) && dict.containsKey(b) && dict.get(f) == b){
+                i++;j--;
+            }else{
+                return false;
+            }
+        }
+        return true;
+
+    }
+3)  public String addStrings(String num1, String num2) {
+        StringBuilder sb = new StringBuilder();
+
+        int i = num1.length() - 1, j = num2.length() - 1;
+        int carry = 0;
+
+        while (i >= 0 || j >= 0) {
+            int sum = carry;
+
+            if (i >= 0) sum += (num1.charAt(i--) - '0');
+            if (j >= 0) sum += (num2.charAt(j--) - '0');
+
+            sb.append(sum % 10);
+            carry = sum / 10;
+        }
+
+        if (carry != 0) sb.append(carry);
+        return sb.reverse().toString();
+    }
+4)  public String reverseWords(String s) {
+        int l=0;
+        int r=0;
+        char a[]=s.toCharArray();
+        while(l<s.length()){
+            while(r<s.length() && a[r]!=' '){    
+                r++;
+            }
+            //reverse part
+            
+            //r-1 because r is pointing current at blank space
+            //Let's
+            //    |
+            //    r
+            reverse(a,l,r-1);             
+            l=r+1;
+            r=l;
+        }
+        return String.valueOf(a);
+    }
+     public String reverse(char s[],int l,int r){
+         while(l<r){
+             char temp=s[l];
+             s[l]=s[r];
+             s[r]=temp;
+             l++;
+             r--;
+         }
+         return String.valueOf(s);
+     }
+5) public String reverseStr(String s, int k) {
+        char[] str = s.toCharArray();
+        int n = str.length;
+        for(int i = 0 ; i <= n-1; i += 2*k){
+            if(i+k-1 <= n-1){
+                reverseK(i,i+k-1,str);
+            }else{
+				//for fewer than k characters left (edge case)
+                reverseK(i,n-1,str);
+            }
+        }
+        String ans = new String(str);
+        return ans;
+    }
+    public void reverseK(int i, int j, char[] str){
+        while(i < j){
+            char temp = str[i];
+            str[i] = str[j];
+            str[j] = temp;
+            i++;
+            j--;
+        }
+    }
+6)    public boolean rotateString(String s, String goal) {
+        if(s ==null || goal == null){
+            return false;
+        }
+        if(s.length() != goal.length()) return false;
+        if(s.length() == 0){
+            return true;
+        }
+        int i =0, j =0;
+        while(i < s.length() && j < goal.length()){
+            if(s.charAt(i) == goal.charAt(j)){
+                i++; j++;
+            }
+            else{
+                if(j == 0){
+                    i++;
+                }
+                else{
+                    j= 0;
+                }
+            }
+        }
+        return (s.substring(0,goal.length() - j).equals(goal.substring(j)));
+    }
+7)    public boolean backspaceCompare(String s, String t) {
+        return buildString(s).equals(buildString(t));
+    }
+
+    private String buildString(String str) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : str.toCharArray()) {
+            if (c != '#') {
+                stack.push(c);
+            } else if (!stack.isEmpty()) {
+                stack.pop();
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        while (!stack.isEmpty()) {
+            sb.append(stack.pop());
+        }
+        return sb.toString();
+    } 
+8)   public boolean checkStraightLine(int[][] c) {
+        
+        
+        int xMove = c[1][0] - c[0][0];
+        int yMove = c[1][1] - c[0][1];
+        
+        for(int i=1; i<c.length; i++){
+
+            int x = c[i][0] - c[i-1][0];
+            int y = c[i][1] - c[i-1][1];
+            
+// linear function -> y = k * x + b;
+// Here need to discuss y = k * x;
+// k = yMove / xMove;
+// y * xMove = x * yMove;
+            
+            if(y * xMove != x * yMove) return false;
+        }
+        
+        return true;
+    }
