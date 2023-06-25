@@ -1,0 +1,204 @@
+1)// Stack implementation in Java
+
+class Stack {
+
+  // store elements of stack
+  private int arr[];
+  // represent top of stack
+  private int top;
+  // total capacity of the stack
+  private int capacity;
+
+  // Creating a stack
+  Stack(int size) {
+    // initialize the array
+    // initialize the stack variables
+    arr = new int[size];
+    capacity = size;
+    top = -1;
+  }
+
+  // push elements to the top of stack
+  public void push(int x) {
+    if (isFull()) {
+      System.out.println("Stack OverFlow");
+
+      // terminates the program
+      System.exit(1);
+    }
+
+    // insert element on top of stack
+    System.out.println("Inserting " + x);
+    arr[++top] = x;
+  }
+
+  // pop elements from top of stack
+  public int pop() {
+
+    // if stack is empty
+    // no element to pop
+    if (isEmpty()) {
+      System.out.println("STACK EMPTY");
+      // terminates the program
+      System.exit(1);
+    }
+
+    // pop element from top of stack
+    return arr[top--];
+  }
+
+  // return size of the stack
+  public int getSize() {
+    return top + 1;
+  }
+
+  // check if the stack is empty
+  public Boolean isEmpty() {
+    return top == -1;
+  }
+
+  // check if the stack is full
+  public Boolean isFull() {
+    return top == capacity - 1;
+  }
+
+  // display elements of stack
+  public void printStack() {
+    for (int i = 0; i <= top; i++) {
+      System.out.print(arr[i] + ", ");
+    }
+  }
+
+  public static void main(String[] args) {
+    Stack stack = new Stack(5);
+
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+
+    System.out.print("Stack: ");
+    stack.printStack();
+
+    // remove element from stack
+    stack.pop();
+    System.out.println("\nAfter popping out");
+    stack.printStack();
+
+  }
+
+2)class Node
+{
+    int data;       // integer data
+    Node next;      // pointer to the next node
+ 
+    public Node(int data)
+    {
+        // set data in the allocated node and return it
+        this.data = data;
+        this.next = null;
+    }
+}
+ 
+class Queue
+{
+    private static Node rear = null, front = null;
+    private static int count = 0;
+ 
+    // Utility function to dequeue the front element
+    public static int dequeue()     // delete at the beginning
+    {
+        if (front == null)
+        {
+            System.out.println("\nQueue Underflow");
+            System.exit(-1);
+        }
+ 
+        Node temp = front;
+        System.out.printf("Removing %d\n", temp.data);
+ 
+        // advance front to the next node
+        front = front.next;
+ 
+        // if the list becomes empty
+        if (front == null) {
+            rear = null;
+        }
+ 
+        // decrease the node's count by 1
+        count -= 1;
+ 
+        // return the removed item
+        return temp.data;
+    }
+ 
+    // Utility function to add an item to the queue
+    public static void enqueue(int item)     // insertion at the end
+    {
+        // allocate a new node in a heap
+        Node node = new Node(item);
+        System.out.printf("Inserting %d\n", item);
+ 
+        // special case: queue was empty
+        if (front == null)
+        {
+            // initialize both front and rear
+            front = node;
+            rear = node;
+        }
+        else {
+            // update rear
+            rear.next = node;
+            rear = node;
+        }
+ 
+        // increase the node's count by 1
+        count += 1;
+    }
+ 
+    // Utility function to return the top element in a queue
+    public static int peek()
+    {
+        // check for an empty queue
+        if (front == null) {
+            System.exit(-1);
+        }
+ 
+        return front.data;
+    }
+ 
+    // Utility function to check if the queue is empty or not
+    public static boolean isEmpty() {
+        return rear == null && front == null;
+    }
+ 
+    // Function to return the size of the queue
+    private static int size() {
+        return count;
+    }
+}
+ 
+class Main
+{
+    public static void main(String[] args)
+    {
+        Queue q = new Queue();
+        q.enqueue(1);
+        q.enqueue(2);
+        q.enqueue(3);
+        q.enqueue(4);
+ 
+        System.out.printf("The front element is %d\n", q.peek());
+ 
+        q.dequeue();
+        q.dequeue();
+        q.dequeue();
+        q.dequeue();
+ 
+        if (q.isEmpty()) {
+            System.out.println("The queue is empty");
+        }
+        else {
+            System.out.println("The queue is not empty");
+        }
+    }
+}
