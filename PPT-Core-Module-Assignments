@@ -411,9 +411,12 @@ making it available for future allocations. Garbage collection helps in memory m
 
 Assignment-6
 ------------
-Q1. In Java, a Collection is a framework that provides an architecture to store and manipulate a group of objects. It provides interfaces, implementations, and algorithms to work with collections of elements.
+Q1. In Java, a Collection is a framework that provides an architecture to store and manipulate a group of objects.
+It provides interfaces, implementations, and algorithms to work with collections of elements.
 
-Q2. In Java, "Collection" refers to the Collection framework, which is a set of interfaces and classes that provide high-level functionality to work with groups of objects. "collections" (with a lowercase 'c') generally refers to the various concrete implementations of the Collection interfaces, such as ArrayList, LinkedList, HashSet, etc.
+Q2. In Java, "Collection" refers to the Collection framework, which is a set of interfaces and classes that provide high-level
+functionality to work with groups of objects. "collections" (with a lowercase 'c') generally refers to the various
+concrete implementations of the Collection interfaces, such as ArrayList, LinkedList, HashSet, etc.
 
 Q3. The advantages of the Collection framework in Java include:
 
