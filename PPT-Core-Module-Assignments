@@ -1,0 +1,350 @@
+Core Module assignment
+======================
+Assignment-1
+------------
+Q1. The main difference between a compiler and an interpreter is that a compiler translates the entire source
+code into machine code before execution, while an interpreter translates and executes the source code line by line.
+
+Q2. JDK stands for Java Development Kit, which includes tools for developing and compiling Java programs.
+JRE stands for Java Runtime Environment, which provides the necessary runtime environment to run Java applications.
+JVM stands for Java Virtual Machine, which is responsible for executing Java bytecode.
+
+Q3. The JVM allocates different types of memory areas, including the heap, method area, stack, PC registers, and native method stack.
+
+Q4. JIT (Just-In-Time) compiler is a component of the JVM that dynamically compiles parts of the bytecode into native machine code at runtime.
+It aims to improve performance by identifying frequently executed code and optimizing it for faster execution.
+
+Q5. In Java, the access specifiers determine the accessibility of classes, methods, and variables. 
+The access specifiers are public, protected, default (no explicit specifier), and private.
+
+Q6. In Java, a compiler is a software tool that translates Java source code into bytecode, 
+which is a platform-independent representation of the program. It performs syntax and semantic checks,
+generates intermediate code, and prepares the program for execution on the JVM.
+
+Q7. In Java, there are three types of variables: instance variables (belonging to an instance of a class), 
+static variables (associated with a class itself), and local variables (defined within a method or block).
+
+Q8. Java provides various data types, including primitive data types (such as int, boolean, float) 
+and reference types (such as classes, interfaces, and arrays).
+
+Q9. Identifiers in Java are used to name classes, methods, variables, and other program elements.
+They must follow certain rules, such as starting with a letter or underscore, consisting of letters, digits, or underscores, and not being a reserved keyword.
+
+Q10. The architecture of the JVM consists of three main components: class loader, runtime data area, and execution engine.
+The class loader loads class files, the runtime data area stores data during program execution, 
+and the execution engine interprets or compiles bytecode into machine code for execution.
+
+Assignment-2
+-------------
+Q1. The conditional operators in Java are:
+
+== (equal to)
+!= (not equal to)
+> (greater than)
+< (less than)
+>= (greater than or equal to)
+<= (less than or equal to)
+Q2. Operators in Java can be classified into three types based on the number of operands:
+
+Unary operators (e.g., !, -)
+Binary operators (e.g., +, -, *, /, %)
+Ternary operator (only one: ?:, the conditional operator)
+Q3. The switch statement in Java is used for multi-way branching. It allows the program to execute different code blocks 
+based on the value of an expression or variable.
+
+Q4. Conditional statements in Java are used to control the flow of execution based on certain conditions. 
+The commonly used conditional statements are if, else if, and else. They help in executing specific blocks of code based on the evaluation of conditions.
+
+Q5.if (condition) {
+    // code to be executed if the condition is true
+} else {
+    // code to be executed if the condition is false
+}
+
+Q6.String str1 = "Hello";
+String str2 = "World";
+
+if (str1.equals(str2)) {
+    // Strings are equal
+} else {
+    // Strings are not equal
+}
+Q7.In Java, strings are immutable, meaning their values cannot be changed. However, using the StringBuilder class, you can create mutable strings.
+Q8.import java.util.Arrays;
+
+public class StringSortExample {
+    public static void main(String[] args) {
+        String input = "openai";
+        char[] chars = input.toCharArray();
+        Arrays.sort(chars);
+        String sortedString = new String(chars);
+        System.out.println(sortedString);
+    }
+}
+Q9.public class LetterCheckExample {
+    public static void main(String[] args) {
+        String word = "Umbrella";
+        boolean containsE = word.contains("e");
+        if (containsE) {
+            System.out.println("The word contains the letter 'e'.");
+        } else {
+            System.out.println("The word does not contain the letter 'e'.");
+        }
+    }
+}
+Q10. The string constant pool is located in the Java heap memory. It is a special area where string literals and interned strings are stored. 
+The string pool allows efficient memory management by reusing string objects with the same value.
+
+Assignment-3
+------------
+Q1.class BankAccount {
+    private String accountHolderName;
+    private double balance;
+
+    public BankAccount(String accountHolderName, double balance) {
+        this.accountHolderName = accountHolderName;
+        this.balance = balance;
+    }
+
+    public String getAccountHolderName() {
+        return accountHolderName;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}
+
+public class BankingSystem {
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount("John Doe", 1000.0);
+        System.out.println("Account Holder Name: " + account.getAccountHolderName());
+        System.out.println("Balance: " + account.getBalance());
+    }
+}
+Q2)class Parent {
+    public void display() {
+        System.out.println("Parent class method");
+    }
+}
+
+class Child extends Parent {
+    @Override
+    public void display() {
+        System.out.println("Child class method");
+    }
+}
+
+public class MethodOverridingExample {
+    public static void main(String[] args) {
+        Parent parentObj = new Parent();
+        parentObj.display();  // Output: Parent class method
+
+        Child childObj = new Child();
+        childObj.display();  // Output: Child class method
+    }
+}
+
+Q3.class Animal {
+    public void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    public void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Cat extends Animal {
+    @Override
+    public void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+public class RuntimePolymorphismExample {
+    public static void main(String[] args) {
+        Animal animal;
+
+        animal = new Dog();
+        animal.sound();  // Output: Dog barks
+
+        animal = new Cat();
+        animal.sound();  // Output: Cat meows
+    }
+}
+Q4)public class CompileTimePolymorphismExample {
+    public static void add(int a, int b) {
+        int sum = a + b;
+        System.out.println("Sum of two integers: " + sum);
+    }
+
+    public static void add(double a, double b) {
+        double sum = a + b;
+        System.out.println("Sum of two doubles: " + sum);
+    }
+
+    public static void main(String[] args) {
+        add(5, 10);        // Output: Sum of two integers: 15
+        add(2.5, 3.5);     // Output: Sum of two doubles: 6.0
+    }
+}
+Q5. Achieving loose coupling in Java can be done by using object-oriented programming concepts such as encapsulation, inheritance, and interfaces.
+By creating classes with clear responsibilities and defining interfaces to communicate between them, you can reduce dependencies and achieve loose coupling.
+
+Q6. The benefit of encapsulation in Java is that it provides data hiding and protects the internal state of an object from being accessed directly by other parts of the program.
+It allows for better control over data access and modification, enhances code maintainability, and facilitates code reusability.
+
+Q7. No, Java is not considered a 100% object-oriented programming language because it supports primitive data types, which are not objects. Additionally, Java has features like static methods, static variables, and the concept of null, which are not strictly object-oriented. However, Java is predominantly object-oriented and follows many object-oriented principles.
+
+Q8. The advantages of abstraction in Java are:
+
+It allows you to focus on the essential features of an object and hide unnecessary details.
+It helps in creating reusable code components through class inheritance and interfaces.
+It provides a clear separation between interface and implementation, allowing for easier maintenance and modification of code.
+It enhances code readability and understandability by providing a higher-level view of the system.
+Q9. Abstraction in Java refers to the process of creating abstract classes and interfaces to define common characteristics 
+and behaviors that can be shared by multiple classes. It allows you to define methods without providing their implementation,
+leaving it to the subclasses to implement those methods. Here's an example:
+abstract class Shape {
+    public abstract void draw();
+}
+
+class Circle extends Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a circle");
+    }
+}
+
+class Rectangle extends Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a rectangle");
+    }
+}
+
+public class AbstractionExample {
+    public static void main(String[] args) {
+        Shape circle = new Circle();
+        circle.draw();      // Output: Drawing a circle
+
+        Shape rectangle = new Rectangle();
+        rectangle.draw();   // Output: Drawing a rectangle
+    }
+}
+Q10.. In Java, a final class is a class that cannot be subclassed. It is the opposite of an extendable or inheritable class.
+When a class is marked as final, it means it cannot be extended by other classes to inherit its properties or behaviors.
+Additionally, all methods in a final class are implicitly final as well, meaning they cannot be overridden by subclasses.
+Final classes are often used for utility classes or classes that provide constants or helper methods.
+
+Assignment-4
+------------
+Q1.interface Shape {
+    void draw();
+}
+
+class Circle implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a circle");
+    }
+}
+
+class Rectangle implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a rectangle");
+    }
+}
+
+public class InterfaceExample {
+    public static void main(String[] args) {
+        Shape circle = new Circle();
+        circle.draw();      // Output: Drawing a circle
+
+        Shape rectangle = new Rectangle();
+        rectangle.draw();   // Output: Drawing a rectangle
+    }
+}
+
+Q2.abstract class Parent {
+    public void concreteMethod1() {
+        System.out.println("Concrete Method 1");
+    }
+
+    public void concreteMethod2() {
+        System.out.println("Concrete Method 2");
+    }
+
+    public abstract void abstractMethod1();
+
+    public abstract void abstractMethod2();
+}
+
+class Child extends Parent {
+    @Override
+    public void abstractMethod1() {
+        System.out.println("Abstract Method 1 implementation in Child class");
+    }
+
+    @Override
+    public void abstractMethod2() {
+        System.out.println("Abstract Method 2 implementation in Child class");
+    }
+}
+
+public class AbstractMethodExample {
+    public static void main(String[] args) {
+        Child child = new Child();
+        child.concreteMethod1();     // Output: Concrete Method 1
+        child.concreteMethod2();     // Output: Concrete Method 2
+        child.abstractMethod1();     // Output: Abstract Method 1 implementation in Child class
+        child.abstractMethod2();     // Output: Abstract Method 2 implementation in Child class
+    }
+}
+Q3.@FunctionalInterface
+interface MathOperation {
+    int operate(int a, int b);
+}
+
+public class FunctionalInterfaceExample {
+    public static void main(String[] args) {
+        MathOperation addition = (a, b) -> a + b;
+        int result = addition.operate(5, 3);
+        System.out.println("Result: " + result);    // Output: 8
+    }
+}
+Q4. An interface in Java is a reference type that defines a contract of methods that a class implementing the interface must follow.
+It acts as a blueprint for classes to provide the implementation of the methods defined in the interface.
+Interfaces can contain constant fields and default methods in addition to abstract methods.
+
+Q5. The use of interfaces in Java is to achieve abstraction and provide a way to achieve multiple inheritance of type. 
+It allows classes to implement multiple interfaces, enabling them to inherit the behaviors defined by those interfaces. 
+Interfaces are also used to establish a contract between different parts of a program.
+
+Q6. Lambda expressions in Java 8 are a concise way to represent anonymous functions. 
+They allow you to write more compact code by expressing behavior as a method argument or code block.
+Lambda expressions are typically used in functional interfaces, which are interfaces with a single abstract method.
+
+Q7. Yes, lambda expressions can be passed as arguments to methods. This is possible when the method parameter is of a functional interface type,
+meaning the interface has a single abstract method. The lambda expression provides an implementation for that method.
+
+Q8. A functional interface in Java 8 is an interface that has only one abstract method.
+It is also known as a Single Abstract Method (SAM) type or a functional interface.
+Functional interfaces are used to leverage lambda expressions and method references in Java 8's functional programming features.
+
+Q9. The benefits of lambda expressions in Java 8 include:
+
+Concise syntax: Lambda expressions allow you to write compact and expressive code, reducing boilerplate code.
+Readability: They improve code readability by focusing on the behavior rather than the mechanics of implementation.
+Functional programming: Lambda expressions facilitate functional programming paradigms, enabling you to write code in a more declarative and expressive style.
+Code reuse: Lambda expressions promote code reuse and enable the passing of behavior as data.
+Parallelism and concurrency: They support parallel programming by easily enabling the use of multi-threading and asynchronous programming.
+
+Q10. No, it is not mandatory for a lambda expression to have parameters.
+Lambda expressions can have zero or more parameters depending on the functional interface they are associated with.
+For example, a lambda expression with no parameters would have an empty parameter list: () -> { /* code */ }.
