@@ -348,3 +348,117 @@ Parallelism and concurrency: They support parallel programming by easily enablin
 Q10. No, it is not mandatory for a lambda expression to have parameters.
 Lambda expressions can have zero or more parameters depending on the functional interface they are associated with.
 For example, a lambda expression with no parameters would have an empty parameter list: () -> { /* code */ }.
+
+Assignment-5
+------------
+Q1. In Java, an exception is an event that occurs during the execution of a program, disrupting the normal flow of the program.
+It represents an abnormal condition or an error situation. Exceptions can occur due to various reasons, such as invalid input, resource unavailability,
+or programming errors.
+
+Q2. Exception handling is the process of dealing with exceptions that occur during the execution of a program.
+It involves catching and handling exceptions to prevent abrupt termination of the program. Exception handling
+allows the program to gracefully recover from errors and take appropriate actions.
+
+Q3. Checked exceptions are checked at compile-time, and the programmer is required to handle them using try-catch blocks 
+or declare them in the method signature using the throws keyword. Unchecked exceptions are not checked at compile-time and 
+can occur during runtime. Errors, on the other hand, are severe issues that typically cannot be recovered from, such as OutOfMemoryError or StackOverflowError.
+
+Q4. In Java, throw is used to explicitly throw an exception within a method or block of code.
+It is followed by an instance of an exception class or a subclass of Throwable. On the other hand, 
+throws is used in the method declaration to indicate that the method may throw one or more exceptions.
+It specifies the types of exceptions that the method might throw to the caller.
+
+Q5. Multithreading in Java refers to the concurrent execution of multiple threads within a single program.
+It allows multiple tasks to be executed simultaneously, improving the efficiency and responsiveness of the program. 
+Some advantages of multithreading in Java include:
+
+Increased performance by utilizing multiple CPU cores.
+Enhanced responsiveness and user experience in GUI applications.
+Efficient handling of I/O operations, such as reading from or writing to files or network connections.
+Simplified coding for concurrent or parallel processing tasks.
+Q6.class CustomException extends Exception {
+    public CustomException(String message) {
+        super(message);
+    }
+}
+
+public class CustomExceptionExample {
+    public static void main(String[] args) {
+        try {
+            throw new CustomException("This is a custom exception");
+        } catch (CustomException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+Q7. Exceptions in Java can be handled using try-catch blocks. The code that might throw an exception is enclosed within the try block, 
+and the potential exceptions are caught and handled in the catch block. Additionally, the finally block can be used to execute code that should always be executed,
+regardless of whether an exception occurs or not.
+
+Q8. In Java, a thread is a lightweight unit of execution within a program. It represents an independent path of execution, 
+allowing multiple threads to run concurrently. Threads are used to achieve multithreading and perform concurrent tasks in a program.
+
+Q9. There are two ways of implementing threads in Java:
+
+By extending the Thread class: You can create a subclass of the Thread class and override its run() method to define the task to be executed by the thread.
+By implementing the Runnable interface: You can implement the Runnable interface and provide the task's implementation in the run() method.
+Then, create an instance of the class and pass it to a Thread object.
+
+Q10. Garbage collection in Java is the automatic process of reclaiming memory occupied by objects that are no longer referenced and are considered
+eligible for destruction. The Java Virtual Machine (JVM) automatically manages the allocation and deallocation of memory for objects.
+When an object is no longer reachable, the garbage collector identifies and releases the memory occupied by that object,
+making it available for future allocations. Garbage collection helps in memory management, preventing memory leaks and manual memory deallocation.
+
+Assignment-6
+------------
+Q1. In Java, a Collection is a framework that provides an architecture to store and manipulate a group of objects. It provides interfaces, implementations, and algorithms to work with collections of elements.
+
+Q2. In Java, "Collection" refers to the Collection framework, which is a set of interfaces and classes that provide high-level functionality to work with groups of objects. "collections" (with a lowercase 'c') generally refers to the various concrete implementations of the Collection interfaces, such as ArrayList, LinkedList, HashSet, etc.
+
+Q3. The advantages of the Collection framework in Java include:
+
+Provides a standard way to store and manipulate groups of objects.
+Offers reusable and well-tested implementations of common data structures and algorithms.
+Facilitates code reusability, as different components can interact using the standard Collection interfaces.
+Simplifies the development process by providing high-level operations for searching, sorting, and modifying collections.
+Supports polymorphism, allowing different implementations of collections to be used interchangeably.
+Q4. The Collection framework in Java includes several interfaces, such as:
+
+Collection: The root interface that defines basic operations common to all collections, such as adding, removing, and querying elements.
+List: An ordered collection that allows duplicate elements and provides positional access to elements.
+Set: A collection that does not allow duplicate elements and provides no specific order for its elements.
+Queue: A collection designed for holding elements before processing, often following the FIFO (First-In-First-Out) order.
+Map: An object that maps keys to values, where each key is unique and associated with a value.
+Q5. The main differences between List and Set in Java are:
+
+List allows duplicate elements, while Set does not allow duplicates.
+List maintains the insertion order of elements, whereas Set does not guarantee any specific order.
+List provides positional access to elements using indices, while Set does not provide positional access.
+List implementations (e.g., ArrayList, LinkedList) allow multiple elements with the same value, while Set implementations (e.g., HashSet, TreeSet) enforce uniqueness.
+Q6. The main differences between Iterator and ListIterator in Java are:
+
+Iterator is a universal interface that can be used with various collection types, while ListIterator is specific to List implementations.
+Iterator allows forward-only traversal of elements, while ListIterator allows bidirectional traversal (both forward and backward).
+ListIterator provides additional operations such as adding, replacing, and retrieving elements at any position in the List.
+ListIterator has methods like previous() and hasPrevious() that are not present in the Iterator interface.
+Q7. The main differences between Comparable and Comparator in Java are:
+
+Comparable is an interface that defines a natural ordering for objects of a class. The class itself must implement the Comparable interface to specify its own ordering.
+Comparator is an interface that allows for the comparison of objects based on a custom logic defined by a separate class.
+The Comparable interface's compareTo() method is used for object comparison, while the Comparator interface's compare() method is used for custom comparison logic.
+The Comparable interface is typically used for comparing objects within the same class, while Comparator is used for comparing objects from different classes or when multiple comparison logics are needed.
+Q8. In HashMap, collision occurs when two or more keys map to the same hash code and are then stored in the same bucket. To handle collisions, HashMap uses a technique called "chaining." Each bucket in the HashMap contains a linked list of entries. 
+When a collision occurs, new entries are added to the linked list in the bucket, forming a chain.
+
+Q9. The main differences between HashMap and TreeMap in Java are:
+
+HashMap is an unordered collection based on hash table implementation, while TreeMap is a sorted collection based on a red-black tree implementation.
+HashMap provides faster access and retrieval of elements using keys, as it uses hashing for efficient lookup. TreeMap provides ordered traversal and retrieval of elements based on the natural ordering of keys or a custom comparator.
+HashMap allows null keys and values, while TreeMap does not allow null keys but allows null values (only if the comparator allows it).
+HashMap has average constant-time performance for insertion, deletion, and retrieval operations. TreeMap has O(log n) time complexity for these operations.
+Q10. LinkedHashMap is a subclass of HashMap that maintains the insertion order of entries. It is implemented as a hash table with a doubly-linked list running through all of its entries.
+The linked list allows predictable iteration order based on the order of insertion.
+LinkedHashMap provides the same performance characteristics as HashMap,  
+with additional overhead for maintaining the linked list.
+
+
